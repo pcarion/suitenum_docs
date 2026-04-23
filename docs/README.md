@@ -13,6 +13,7 @@ Use the section below to quickly find what you are looking for.
   - [System requirements](system-requirements.md)
   - [Installation overview](installation/README.md)
   - [Docker Compose deployment](installation/compose.md)
+    - [Docker Compose on Hetzner Cloud](installation/hetzner.md)
     - [Docker Compose examples](examples/compose/)
   - [Kubernetes deployment](installation/kubernetes.md)
     - [Helm values examples](examples/helm/)
