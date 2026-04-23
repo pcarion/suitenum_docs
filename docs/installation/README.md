@@ -12,6 +12,9 @@ We also provide [Docker images](https://hub.docker.com/u/lasuite?page=1&search=i
 Please follow the instructions [here](/docs/installation/compose.md). 
 ⚠️ Please keep in mind that we do not use it ourselves in production. Let us know in the issues if you run into troubles, we'll try to help.
 
+## Docker Compose on Hetzner Cloud
+If you want a practical single-VM setup on Hetzner Cloud with your own domain, follow [this guide](/docs/installation/hetzner.md).
+
 ## Other ways to install Docs
 Community members have contributed several other ways to install Docs. While we owe them a big thanks 🙏, please keep in mind we (Docs maintainers) can't provide support on these installation methods as we don't use them ourselves and there are too many options out there for us to keep track of. Of course you can contact the contributors and the broader community for assistance.
 
