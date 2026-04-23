@@ -112,6 +112,8 @@ Edit `~/lasuite/docs/env.d/backend`:
 
 ## 8) Configure Keycloak (if self-hosted)
 
+Yes — Keycloak is a separate service to install and run. In this guide, it is deployed as its own Docker Compose stack (`~/lasuite/keycloak`) with its own PostgreSQL service and env files. If you already have an external OIDC provider, you can skip this entire Keycloak stack.
+
 In `~/lasuite/keycloak/env.d/keycloak` set at least:
 
 ```env
@@ -192,7 +194,7 @@ If any of these are wrong, users will fail to sign in.
 
 ## 12) If you already have external OIDC and S3
 
-You can skip local Keycloak/MinIO entirely:
+You can skip local Keycloak/MinIO entirely (so there is no separate Keycloak service to run on your Hetzner VM):
 - Keep only Docs + PostgreSQL + Redis + reverse proxy.
 - Set OIDC variables in Docs to your external IdP endpoints/client.
 - Set S3 variables in Docs to your external object store.
