@@ -157,12 +157,31 @@ High-level flow:
 5. Docs fetches user claims from userinfo endpoint and maps them to local user fields.
 6. A Django session is created and reused for authenticated API access.
 
+### What this means for you (day-to-day login)
+
+- End users authenticate on your Identity Provider (Keycloak, Auth0, Azure AD, etc.), not with a Docs-local password form.
+- The first time a user logs in through OIDC, Docs creates or links a local account using OIDC claims.
+- If OIDC is unavailable, end-user login to Docs is unavailable too (because OIDC is the login method).
+- The Django admin account you create with `createsuperuser` is for `/admin` operations and emergency maintenance; normal users should authenticate through OIDC on the main app URL.
+
 Important behavior in this repository:
 - OIDC endpoint URLs and client credentials are configured through env vars in `env.d/backend`.
 - The custom backend computes `full_name` and `short_name` from userinfo claims.
 - Existing users are matched by OIDC `sub` (and optionally email fallback, depending on settings).
 - Media requests (`/media/*`) are authorized by nginx `auth_request` against `/api/v1.0/documents/media-auth/` before proxying to S3/MinIO.
 - Collaboration WebSocket traffic is proxied via `/collaboration/ws/` to y-provider.
+
+### Minimum OIDC values that must be correct
+
+- `OIDC_OP_AUTHORIZATION_ENDPOINT`
+- `OIDC_OP_TOKEN_ENDPOINT`
+- `OIDC_OP_USER_ENDPOINT`
+- `OIDC_OP_JWKS_ENDPOINT`
+- `OIDC_RP_CLIENT_ID`
+- `OIDC_RP_CLIENT_SECRET`
+- `OIDC_REDIRECT_ALLOWED_HOSTS` (must include your Docs URL, e.g. `https://docs.example.com`)
+
+If any of these are wrong, users will fail to sign in.
 
 ## 11) Operational notes for Hetzner
 
